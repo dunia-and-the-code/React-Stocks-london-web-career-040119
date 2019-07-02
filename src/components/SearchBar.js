@@ -1,23 +1,28 @@
 import React from 'react';
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  //add debugger and check what props holds (happens on load)
+  // debugger
   return (
     <div>
 
       <strong>Sort by:</strong>
       <label>
-        <input type="radio" value="Alphabetically" checked={null} onChange={null}/>
+              {/* give it a name so only one can be selected at a time*/}
+        <input name="stock" type="radio" value="Alphabetically" checked={null} onChange={props.sortAlphabetically} />
         Alphabetically
       </label>
       <label>
-        <input type="radio" value="Price" checked={null} onChange={null}/>
+        <input name="stock" type="radio" value="Price" checked={null} onChange={props.sortByPrice} />
         Price
       </label>
-      <br/>
+      <br />
 
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        {/* we call the function and feed it the event targets value */}
+        <select onChange={e => props.sortByType(e.target.value)}> 
+          <option value="All">All stocks</option>
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
